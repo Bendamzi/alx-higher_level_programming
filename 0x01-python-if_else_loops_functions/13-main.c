@@ -4,7 +4,7 @@
 #include "lists.h"
 
 /**
- * main - create list and test insert allocations
+ * main - check the code for
  *
  * Return: Always 0.
  */
