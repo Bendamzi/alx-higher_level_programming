@@ -1,20 +1,21 @@
 #!/usr/bin/node
-const len = process.argv.length;
-if (len <= 3) {
-  console.log(0);
+const args = process.argv.slice(2);
+if (args.length === 0) {
+  console.log('0');
+} else if (args.length === 1) {
+  console.log('0');
 } else {
-  let bigNum = parseInt(process.argv[2]);
-  for (let i = 3; !isNaN(parseInt(process.argv[i])); i++) {
-    if (bigNum < parseInt(process.argv[i])) {
-      bigNum = parseInt(process.argv[i]);
-    }
+  const arg = [];
+  for (let i = 0; i < args.length; i++) {
+    const argNum = parseInt(args[i], 10);
+    // copy the array into anther array
+    arg.push(argNum);
   }
-  let secBigNum = parseInt(process.argv[2]);
-  for (let j = 3; !isNaN(parseInt(process.argv[j])); j++) {
-    const curNum = parseInt(process.argv[j]);
-    if (secBigNum < curNum && curNum !== bigNum) {
-      secBigNum = curNum;
-    }
-  }
-  console.log(secBigNum);
+  // sort the element in asceding order
+  arg.sort(function (a, b) {
+    return a - b;
+  });
+  // get the length of the element
+  const secLargestElement = arg[arg.length - 2];
+  console.log(secLargestElement);
 }
