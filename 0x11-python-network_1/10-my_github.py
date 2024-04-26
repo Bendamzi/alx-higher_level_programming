@@ -7,18 +7,11 @@ token to access GitHub API and display user id.
 """
 
 import requests
-import sys
+from requests.auth import HTTPBasicAuth
+from sys import argv
 
-if __name__ == "__main__":
-    username = sys.argv[1]
-    password = sys.argv[2]
-
-    url = f'https://api.github.com/users/{username}'
-    response = requests.get(url, auth=(username, password))
-
-    if response.status_code == 200:
-        user_data = response.json()
-        user_id = user_data.get('id')
-        print(user_id)
-    else:
-        print(None)
+if __name__ == '__main__':
+    url = 'https://api.github.com/users/{}'.format(argv[1])
+    r = requests.get(url,
+                     auth=HTTPBasicAuth(argv[1], argv[2]))
+    print(r.json().get('id'))
